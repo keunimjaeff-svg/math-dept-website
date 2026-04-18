@@ -11,15 +11,15 @@
     <div class="container">
       <div class="about-text">
         <p><%= lang==='uz'
-          ? "Oliy va Amaliy matematika kafedrasi — Toshkent davlat iqtisodiyot universitetining yetakchi kafedraleridan biri bo'lib, talabalar uchun yuqori sifatli matematik ta'lim beradi."
+          ? "Oliy va amaliy matematika kafedrasi — Toshkent davlat iqtisodiyot universitetining yetakchi kafedralaridan biri bo'lib, talabalar uchun yuqori sifatli matematik ta'lim beradi."
           : 'Кафедра высшей и прикладной математики является одной из ведущих кафедр Ташкентского государственного экономического университета, обеспечивающей высококачественное математическое образование студентов.' %></p>
         <p><%= lang==='uz'
-          ? "Kafedra doktora va magistrlik dissertatsiyalari, ilmiy maqolalar, darsliklar va uslubiy qo'llanmalar chop etib kelmoqda."
-          : 'Кафедра публикует докторские и магистерские диссертации, научные статьи, учебники и методические пособия.' %></p>
+          ? "Kafedra professor-o'qituvchilari tomonidan bakalavrlik, magistrlik va doktorlik dissertatsiyalari, monografiyalar, ilmiy maqolalar, o'quv adabiyotlari nashr etib kelinmoqda."
+          : 'Профессорско-преподавательским составом кафедры публикуются бакалаврские, магистерские и докторские диссертации, монографии, научные статьи и учебная литература.' %></p>
       </div>
 
       <% if (teachers.length > 0) { %>
-      <h2 class="section-title"><%= lang==='uz' ? "O'qituvchilar" : 'Преподаватели' %></h2>
+      <h2 class="section-title"><%= lang==='uz' ? "Kafedra professor-o'qituvchilari" : 'Профессорско-преподавательский состав кафедры' %></h2>
       <div class="teachers-grid">
         <% teachers.forEach(t => { %>
         <div class="teacher-card">
