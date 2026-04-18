@@ -1,0 +1,40 @@
+<%- include('layout', {pageTitle: 'Главная'}) %>
+<div class="admin-page">
+  <h1 class="admin-title">Добро пожаловать!</h1>
+  <p class="admin-sub">Кафедра высшей и прикладной математики — ТГЭУ</p>
+
+  <div class="stat-cards">
+    <a href="/admin/news" class="stat-card-admin">
+      <span class="sca-num"><%= stats.news %></span>
+      <span class="sca-label">Новостей</span>
+    </a>
+    <a href="/admin/olympiads" class="stat-card-admin">
+      <span class="sca-num"><%= stats.olympiads %></span>
+      <span class="sca-label">Олимпиад</span>
+    </a>
+    <a href="/admin/publications" class="stat-card-admin">
+      <span class="sca-num"><%= stats.publications %></span>
+      <span class="sca-label">Публикаций</span>
+    </a>
+    <a href="/admin/materials" class="stat-card-admin">
+      <span class="sca-num"><%= stats.materials %></span>
+      <span class="sca-label">Материалов</span>
+    </a>
+    <a href="/admin/teachers" class="stat-card-admin">
+      <span class="sca-num"><%= stats.teachers %></span>
+      <span class="sca-label">Преподавателей</span>
+    </a>
+  </div>
+
+  <div class="quick-actions">
+    <h2>Быстрые действия</h2>
+    <div class="qa-grid">
+      <a href="/admin/news/new" class="qa-btn">+ Добавить новость</a>
+      <a href="/admin/olympiads/new" class="qa-btn">+ Добавить олимпиаду</a>
+      <a href="/admin/publications/new" class="qa-btn">+ Загрузить публикацию</a>
+      <a href="/admin/materials/new" class="qa-btn">+ Загрузить материал</a>
+      <a href="/admin/teachers/new" class="qa-btn">+ Добавить преподавателя</a>
+    </div>
+  </div>
+</div>
+<%- include('layout-end') %>

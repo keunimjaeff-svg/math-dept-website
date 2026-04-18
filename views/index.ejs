@@ -1,0 +1,122 @@
+<%- include('partials/head') %>
+<body>
+<%- include('partials/header') %>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1><%= lang==='uz' ? 'Oliy va Amaliy matematika kafedrasi' : 'Кафедра высшей и прикладной математики' %></h1>
+      <p class="hero-sub"><%= lang==='uz' ? "Toshkent davlat iqtisodiyot universiteti" : 'Ташкентский государственный экономический университет' %></p>
+      <div class="hero-btns">
+        <a href="/about" class="btn btn-primary"><%= lang==='uz' ? 'Kafedra haqida' : 'О кафедре' %></a>
+        <a href="/materials" class="btn btn-outline"><%= lang==='uz' ? "O'quv materiallari" : 'Учебные материалы' %></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="container stats-grid">
+      <div class="stat-card">
+        <span class="stat-num">15+</span>
+        <span class="stat-label"><%= lang==='uz' ? "O'qituvchilar" : 'Преподавателей' %></span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">30+</span>
+        <span class="stat-label"><%= lang==='uz' ? 'Nashrlar' : 'Публикаций' %></span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">10+</span>
+        <span class="stat-label"><%= lang==='uz' ? 'Olimpiadalar' : 'Олимпиад' %></span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">50+</span>
+        <span class="stat-label"><%= lang==='uz' ? "O'quv materiallari" : 'Учебных материалов' %></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest News -->
+  <% if (latestNews.length > 0) { %>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2><%= lang==='uz' ? 'So\'nggi yangiliklar' : 'Последние новости' %></h2>
+        <a href="/news" class="view-all"><%= lang==='uz' ? 'Barchasi →' : 'Все новости →' %></a>
+      </div>
+      <div class="cards-grid">
+        <% latestNews.forEach(item => { %>
+        <article class="card">
+          <% if (item.image) { %>
+          <div class="card-img">
+            <img src="<%= item.image %>" alt="<%= lang==='uz' ? item.title_uz : item.title_ru %>" loading="lazy">
+          </div>
+          <% } %>
+          <div class="card-body">
+            <time class="card-date"><%= new Date(item.created_at).toLocaleDateString(lang==='uz'?'uz-UZ':'ru-RU') %></time>
+            <h3 class="card-title"><a href="/news/<%= item.id %>"><%= lang==='uz' ? (item.title_uz||item.title_ru) : item.title_ru %></a></h3>
+          </div>
+        </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- Olympiads -->
+  <% if (latestOlympiads.length > 0) { %>
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2><%= lang==='uz' ? 'Olimpiadalar' : 'Олимпиады' %></h2>
+        <a href="/olympiads" class="view-all"><%= lang==='uz' ? 'Barchasi →' : 'Все →' %></a>
+      </div>
+      <div class="olympiad-list">
+        <% latestOlympiads.forEach(item => { %>
+        <div class="olympiad-item">
+          <% if (item.image) { %><img src="<%= item.image %>" alt="olympiad" loading="lazy"><% } %>
+          <div class="olympiad-info">
+            <% if (item.event_date) { %><span class="event-date">📅 <%= item.event_date %></span><% } %>
+            <h3><a href="/olympiads/<%= item.id %>"><%= lang==='uz' ? (item.title_uz||item.title_ru) : item.title_ru %></a></h3>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- Quick Links -->
+  <section class="section">
+    <div class="container">
+      <h2 class="center-title"><%= lang==='uz' ? 'Tezkor havolalar' : 'Быстрый доступ' %></h2>
+      <div class="quick-links">
+        <a href="/publications" class="quick-link">
+          <span class="ql-icon">📄</span>
+          <span><%= lang==='uz' ? 'Nashrlar' : 'Публикации' %></span>
+        </a>
+        <a href="/materials" class="quick-link">
+          <span class="ql-icon">📚</span>
+          <span><%= lang==='uz' ? 'Darsliklar' : 'Учебники' %></span>
+        </a>
+        <a href="/olympiads" class="quick-link">
+          <span class="ql-icon">🏆</span>
+          <span><%= lang==='uz' ? 'Olimpiadalar' : 'Олимпиады' %></span>
+        </a>
+        <a href="/about" class="quick-link">
+          <span class="ql-icon">👨‍🏫</span>
+          <span><%= lang==='uz' ? "O'qituvchilar" : 'Преподаватели' %></span>
+        </a>
+        <a href="/contact" class="quick-link">
+          <span class="ql-icon">📞</span>
+          <span><%= lang==='uz' ? 'Aloqa' : 'Контакты' %></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
+</body>
+</html>

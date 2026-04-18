@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: math-dept-tdiu
+    runtime: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: math-dept-db
+          property: connectionString

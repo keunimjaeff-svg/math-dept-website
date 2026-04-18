@@ -1,0 +1,42 @@
+<%- include('layout', {pageTitle: item ? 'Редактировать новость' : 'Новая новость'}) %>
+<div class="admin-page">
+  <div class="admin-page-header">
+    <h1 class="admin-title"><%= item ? 'Редактировать новость' : 'Добавить новость' %></h1>
+    <a href="/admin/news" class="btn-back">← Назад</a>
+  </div>
+  <% if (error) { %><div class="alert alert-error"><%= error %></div><% } %>
+  <form method="POST" action="<%= action %>" enctype="multipart/form-data" class="admin-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Заголовок (RU) *</label>
+        <input type="text" name="title_ru" value="<%= item ? item.title_ru : '' %>" required>
+      </div>
+      <div class="form-group">
+        <label>Sarlavha (UZ)</label>
+        <input type="text" name="title_uz" value="<%= item ? (item.title_uz||'') : '' %>">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Текст (RU)</label>
+        <textarea name="content_ru" rows="8"><%= item ? (item.content_ru||'') : '' %></textarea>
+      </div>
+      <div class="form-group">
+        <label>Matn (UZ)</label>
+        <textarea name="content_uz" rows="8"><%= item ? (item.content_uz||'') : '' %></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Изображение <% if (item && item.image) { %><span class="hint">(текущее: <a href="<%= item.image %>" target="_blank">посмотреть</a>)</span><% } %></label>
+      <input type="file" name="image" accept="image/*">
+    </div>
+    <div class="form-group form-check">
+      <label><input type="checkbox" name="published" value="1" <%= (!item || item.published) ? 'checked' : '' %>> Опубликовать</label>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-save">💾 Сохранить</button>
+      <a href="/admin/news" class="btn-cancel">Отмена</a>
+    </div>
+  </form>
+</div>
+<%- include('layout-end') %>

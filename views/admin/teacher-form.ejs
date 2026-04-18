@@ -1,0 +1,52 @@
+<%- include('layout', {pageTitle: item ? 'Редактировать' : 'Добавить преподавателя'}) %>
+<div class="admin-page">
+  <div class="admin-page-header">
+    <h1 class="admin-title"><%= item ? 'Редактировать преподавателя' : 'Добавить преподавателя' %></h1>
+    <a href="/admin/teachers" class="btn-back">← Назад</a>
+  </div>
+  <form method="POST" action="<%= action %>" enctype="multipart/form-data" class="admin-form">
+    <div class="form-group">
+      <label>Полное имя *</label>
+      <input type="text" name="name" value="<%= item ? item.name : '' %>" required placeholder="Иванов Иван Иванович">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Учёная степень (RU)</label>
+        <input type="text" name="degree_ru" value="<%= item ? (item.degree_ru||'') : '' %>" placeholder="Доктор наук">
+      </div>
+      <div class="form-group">
+        <label>Ilmiy daraja (UZ)</label>
+        <input type="text" name="degree_uz" value="<%= item ? (item.degree_uz||'') : '' %>" placeholder="Fan doktori">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Должность (RU)</label>
+        <input type="text" name="position_ru" value="<%= item ? (item.position_ru||'') : '' %>" placeholder="Профессор, зав. кафедрой">
+      </div>
+      <div class="form-group">
+        <label>Lavozim (UZ)</label>
+        <input type="text" name="position_uz" value="<%= item ? (item.position_uz||'') : '' %>" placeholder="Professor">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" value="<%= item ? (item.email||'') : '' %>">
+      </div>
+      <div class="form-group">
+        <label>Порядок отображения</label>
+        <input type="number" name="order_num" value="<%= item ? item.order_num : 0 %>" min="0">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Фото <% if (item && item.photo) { %><span class="hint">(<a href="<%= item.photo %>" target="_blank">текущее</a>)</span><% } %></label>
+      <input type="file" name="photo" accept="image/*">
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-save">💾 Сохранить</button>
+      <a href="/admin/teachers" class="btn-cancel">Отмена</a>
+    </div>
+  </form>
+</div>
+<%- include('layout-end') %>

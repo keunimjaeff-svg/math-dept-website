@@ -1,0 +1,36 @@
+<%- include('partials/head', {pageTitle: lang==='uz' ? 'Nashrlar' : 'Публикации'}) %>
+<body>
+<%- include('partials/header') %>
+<main>
+  <div class="page-hero">
+    <div class="container"><h1><%= lang==='uz' ? 'Ilmiy nashrlar' : 'Научные публикации' %></h1></div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <% if (list.length === 0) { %>
+        <p class="empty-msg"><%= lang==='uz' ? 'Nashrlar yo\'q' : 'Публикаций пока нет' %></p>
+      <% } else { %>
+      <div class="pdf-list">
+        <% list.forEach(item => { %>
+        <div class="pdf-item">
+          <div class="pdf-icon">📄</div>
+          <div class="pdf-info">
+            <h3 class="pdf-title"><%= lang==='uz' ? (item.title_uz||item.title_ru) : item.title_ru %></h3>
+            <% if (item.author) { %><p class="pdf-author">👤 <%= item.author %></p><% } %>
+            <% if (item.year) { %><p class="pdf-year">📅 <%= item.year %></p><% } %>
+            <% if (item.description_ru || item.description_uz) { %>
+            <p class="pdf-desc"><%= lang==='uz' ? (item.description_uz||item.description_ru) : item.description_ru %></p>
+            <% } %>
+          </div>
+          <a href="<%= item.file_path %>" class="btn btn-download" target="_blank" download>
+            ⬇ <%= lang==='uz' ? 'Yuklab olish' : 'Скачать PDF' %>
+          </a>
+        </div>
+        <% }) %>
+      </div>
+      <% } %>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer') %>
+</body></html>

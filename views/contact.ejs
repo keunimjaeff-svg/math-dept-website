@@ -1,0 +1,55 @@
+<%- include('partials/head', {pageTitle: lang==='uz' ? 'Aloqa' : 'Контакты'}) %>
+<body>
+<%- include('partials/header') %>
+<main>
+  <div class="page-hero">
+    <div class="container"><h1><%= lang==='uz' ? 'Aloqa' : 'Контакты' %></h1></div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2><%= lang==='uz' ? 'Biz bilan bog\'laning' : 'Свяжитесь с нами' %></h2>
+          <div class="contact-item">
+            <span class="ci-icon">📍</span>
+            <div>
+              <strong><%= lang==='uz' ? 'Manzil' : 'Адрес' %></strong>
+              <p><%= lang==='uz' ? "100003, Toshkent sh., Uzbekiston ko'chasi, 49" : '100003, г. Ташкент, ул. Узбекистан, 49' %></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="ci-icon">🏛️</span>
+            <div>
+              <strong><%= lang==='uz' ? 'Universitet' : 'Университет' %></strong>
+              <p><%= lang==='uz' ? 'Toshkent davlat iqtisodiyot universiteti (TDIU)' : 'Ташкентский государственный экономический университет (ТГЭУ)' %></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="ci-icon">✉️</span>
+            <div>
+              <strong>Email</strong>
+              <p><a href="mailto:math@tsue.uz">math@tsue.uz</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="ci-icon">🌐</span>
+            <div>
+              <strong><%= lang==='uz' ? 'Universitet sayti' : 'Сайт университета' %></strong>
+              <p><a href="https://tsue.uz" target="_blank">tsue.uz</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-map">
+          <div class="map-placeholder">
+            <p>📍 <%= lang==='uz' ? "Toshkent, Uzbekiston ko'chasi 49, TDIU" : 'Ташкент, ул. Узбекистан 49, ТГЭУ' %></p>
+            <a href="https://www.google.com/maps/search/TDIU+Tashkent" target="_blank" class="btn btn-outline">
+              <%= lang==='uz' ? 'Xaritada ko\'rish' : 'Открыть на карте' %> →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer') %>
+</body></html>

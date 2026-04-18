@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход — Админ-панель</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="login-body">
+  <div class="login-box">
+    <div class="login-logo">М</div>
+    <h1>Админ-панель</h1>
+    <p class="login-sub">Кафедра высшей и прикладной математики</p>
+    <% if (error) { %><div class="alert alert-error"><%= error %></div><% } %>
+    <form method="POST" action="/admin/login">
+      <div class="form-group">
+        <label>Логин</label>
+        <input type="text" name="username" required autofocus placeholder="admin">
+      </div>
+      <div class="form-group">
+        <label>Пароль</label>
+        <input type="password" name="password" required placeholder="••••••••">
+      </div>
+      <button type="submit" class="btn-login">Войти</button>
+    </form>
+  </div>
+</body>
+</html>

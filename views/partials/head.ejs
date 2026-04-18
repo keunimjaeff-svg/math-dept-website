@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="<%= lang==='uz' ? 'TDIU Oliy va Amaliy matematika kafedrasi — o\'quv materiallari, nashrlar, olimpiadalar' : 'Кафедра высшей и прикладной математики ТГЭУ — учебные материалы, публикации, олимпиады' %>">
+  <meta name="keywords" content="<%= lang==='uz' ? 'TDIU matematika kafedrasi, amaliy matematika, olimpiada' : 'ТГЭУ математика, прикладная математика, кафедра, олимпиада' %>">
+  <meta property="og:title" content="<%= typeof pageTitle !== 'undefined' ? pageTitle : (lang==='uz' ? 'Oliy va Amaliy matematika kafedrasi' : 'Кафедра высшей и прикладной математики') %>">
+  <meta property="og:description" content="<%= lang==='uz' ? 'TDIU Oliy va Amaliy matematika kafedrasi' : 'Кафедра высшей и прикладной математики ТГЭУ' %>">
+  <meta property="og:type" content="website">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle + ' — ' : '' %><%= lang==='uz' ? 'Oliy va Amaliy matematika kafedrasi | TDIU' : 'Кафедра высшей и прикладной математики | ТГЭУ' %></title>
+  <link rel="canonical" href="/">
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollegeOrUniversity",
+    "name": "<%= lang==='uz' ? 'TDIU — Oliy va Amaliy matematika kafedrasi' : 'ТГЭУ — Кафедра высшей и прикладной математики' %>",
+    "url": "/"
+  }
+  </script>
+</head>

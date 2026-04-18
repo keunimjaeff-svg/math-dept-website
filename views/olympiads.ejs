@@ -1,0 +1,32 @@
+<%- include('partials/head', {pageTitle: lang==='uz' ? 'Olimpiadalar' : 'Олимпиады'}) %>
+<body>
+<%- include('partials/header') %>
+<main>
+  <div class="page-hero">
+    <div class="container"><h1><%= lang==='uz' ? 'Olimpiadalar' : 'Олимпиады' %></h1></div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <% if (list.length === 0) { %>
+        <p class="empty-msg"><%= lang==='uz' ? 'Olimpiadalar yo\'q' : 'Олимпиад пока нет' %></p>
+      <% } else { %>
+      <div class="olympiad-cards">
+        <% list.forEach(item => { %>
+        <article class="olympiad-card">
+          <% if (item.image) { %>
+          <div class="card-img"><img src="<%= item.image %>" alt="olimpiada" loading="lazy"></div>
+          <% } %>
+          <div class="card-body">
+            <% if (item.event_date) { %><span class="event-date">📅 <%= item.event_date %></span><% } %>
+            <h2 class="card-title"><a href="/olympiads/<%= item.id %>"><%= lang==='uz' ? (item.title_uz||item.title_ru) : item.title_ru %></a></h2>
+            <time class="card-date"><%= new Date(item.created_at).toLocaleDateString(lang==='uz'?'uz-UZ':'ru-RU') %></time>
+          </div>
+        </article>
+        <% }) %>
+      </div>
+      <% } %>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer') %>
+</body></html>

@@ -1,0 +1,32 @@
+<header class="site-header">
+  <div class="container">
+    <div class="header-top">
+      <a href="/" class="logo">
+        <div class="logo-icon">М</div>
+        <div class="logo-text">
+          <span class="logo-main"><%= lang==='uz' ? 'Oliy va Amaliy matematika' : 'Высшая и прикладная математика' %></span>
+          <span class="logo-sub"><%= lang==='uz' ? 'TDIU kafedrasi' : 'Кафедра ТГЭУ' %></span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="?lang=ru" class="lang-btn <%= lang==='ru' ? 'active' : '' %>">RU</a>
+        <a href="?lang=uz" class="lang-btn <%= lang==='uz' ? 'active' : '' %>">UZ</a>
+        <button class="burger" id="burger" aria-label="Menu">&#9776;</button>
+      </div>
+    </div>
+    <nav class="main-nav" id="main-nav">
+      <a href="/" class="nav-link"><%= lang==='uz' ? 'Bosh sahifa' : 'Главная' %></a>
+      <a href="/about" class="nav-link"><%= lang==='uz' ? 'Kafedra haqida' : 'О кафедре' %></a>
+      <a href="/news" class="nav-link"><%= lang==='uz' ? 'Yangiliklar' : 'Новости' %></a>
+      <a href="/olympiads" class="nav-link"><%= lang==='uz' ? 'Olimpiadalar' : 'Олимпиады' %></a>
+      <a href="/publications" class="nav-link"><%= lang==='uz' ? 'Nashrlar' : 'Публикации' %></a>
+      <a href="/materials" class="nav-link"><%= lang==='uz' ? 'O\'quv materiallari' : 'Учебные материалы' %></a>
+      <a href="/contact" class="nav-link"><%= lang==='uz' ? 'Aloqa' : 'Контакты' %></a>
+    </nav>
+  </div>
+</header>
+<script>
+  document.getElementById('burger').addEventListener('click', () => {
+    document.getElementById('main-nav').classList.toggle('open');
+  });
+</script>

@@ -1,0 +1,39 @@
+<%- include('partials/head', {pageTitle: lang==='uz' ? 'Yangiliklar' : 'Новости'}) %>
+<body>
+<%- include('partials/header') %>
+<main>
+  <div class="page-hero">
+    <div class="container"><h1><%= lang==='uz' ? 'Yangiliklar' : 'Новости' %></h1></div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <% if (newsList.length === 0) { %>
+        <p class="empty-msg"><%= lang==='uz' ? 'Yangiliklar yo\'q' : 'Новостей пока нет' %></p>
+      <% } else { %>
+      <div class="cards-grid">
+        <% newsList.forEach(item => { %>
+        <article class="card">
+          <% if (item.image) { %>
+          <div class="card-img"><img src="<%= item.image %>" alt="<%= lang==='uz' ? item.title_uz : item.title_ru %>" loading="lazy"></div>
+          <% } %>
+          <div class="card-body">
+            <time class="card-date"><%= new Date(item.created_at).toLocaleDateString(lang==='uz'?'uz-UZ':'ru-RU') %></time>
+            <h2 class="card-title"><a href="/news/<%= item.id %>"><%= lang==='uz' ? (item.title_uz||item.title_ru) : item.title_ru %></a></h2>
+          </div>
+        </article>
+        <% }) %>
+      </div>
+      <!-- Pagination -->
+      <% if (totalPages > 1) { %>
+      <div class="pagination">
+        <% for (let i = 1; i <= totalPages; i++) { %>
+          <a href="?page=<%= i %>" class="page-btn <%= i===page ? 'active' : '' %>"><%= i %></a>
+        <% } %>
+      </div>
+      <% } %>
+      <% } %>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer') %>
+</body></html>

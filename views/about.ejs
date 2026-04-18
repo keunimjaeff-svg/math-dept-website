@@ -1,0 +1,53 @@
+<%- include('partials/head', {pageTitle: lang==='uz' ? 'Kafedra haqida' : 'О кафедре'}) %>
+<body>
+<%- include('partials/header') %>
+<main>
+  <div class="page-hero">
+    <div class="container">
+      <h1><%= lang==='uz' ? 'Kafedra haqida' : 'О кафедре' %></h1>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="about-text">
+        <p><%= lang==='uz'
+          ? "Oliy va Amaliy matematika kafedrasi — Toshkent davlat iqtisodiyot universitetining yetakchi kafedraleridan biri bo'lib, talabalar uchun yuqori sifatli matematik ta'lim beradi."
+          : 'Кафедра высшей и прикладной математики является одной из ведущих кафедр Ташкентского государственного экономического университета, обеспечивающей высококачественное математическое образование студентов.' %></p>
+        <p><%= lang==='uz'
+          ? "Kafedra doktora va magistrlik dissertatsiyalari, ilmiy maqolalar, darsliklar va uslubiy qo'llanmalar chop etib kelmoqda."
+          : 'Кафедра публикует докторские и магистерские диссертации, научные статьи, учебники и методические пособия.' %></p>
+      </div>
+
+      <% if (teachers.length > 0) { %>
+      <h2 class="section-title"><%= lang==='uz' ? "O'qituvchilar" : 'Преподаватели' %></h2>
+      <div class="teachers-grid">
+        <% teachers.forEach(t => { %>
+        <div class="teacher-card">
+          <div class="teacher-photo">
+            <% if (t.photo) { %>
+              <img src="<%= t.photo %>" alt="<%= t.name %>" loading="lazy">
+            <% } else { %>
+              <div class="teacher-avatar"><%= t.name.charAt(0) %></div>
+            <% } %>
+          </div>
+          <div class="teacher-info">
+            <h3><%= t.name %></h3>
+            <% if (t.degree_ru || t.degree_uz) { %>
+            <p class="teacher-degree"><%= lang==='uz' ? (t.degree_uz||t.degree_ru) : (t.degree_ru||t.degree_uz) %></p>
+            <% } %>
+            <% if (t.position_ru || t.position_uz) { %>
+            <p class="teacher-pos"><%= lang==='uz' ? (t.position_uz||t.position_ru) : (t.position_ru||t.position_uz) %></p>
+            <% } %>
+            <% if (t.email) { %><a href="mailto:<%= t.email %>" class="teacher-email">✉️ <%= t.email %></a><% } %>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <p class="empty-msg"><%= lang==='uz' ? "O'qituvchilar hali qo'shilmagan" : 'Преподаватели ещё не добавлены' %></p>
+      <% } %>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer') %>
+</body></html>

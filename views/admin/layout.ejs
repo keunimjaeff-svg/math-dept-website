@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle + ' — ' : '' %>Админ-панель</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="logo-icon-sm">М</span>
+        <span>Администратор</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="/admin" class="sn-link">🏠 Главная</a>
+        <a href="/admin/news" class="sn-link">📰 Новости</a>
+        <a href="/admin/olympiads" class="sn-link">🏆 Олимпиады</a>
+        <a href="/admin/publications" class="sn-link">📄 Публикации</a>
+        <a href="/admin/materials" class="sn-link">📚 Учебные материалы</a>
+        <a href="/admin/teachers" class="sn-link">👨‍🏫 Преподаватели</a>
+        <a href="/admin/settings" class="sn-link">⚙️ Настройки</a>
+        <a href="/" class="sn-link" target="_blank">🌐 Сайт</a>
+        <a href="/admin/logout" class="sn-link sn-logout">🚪 Выйти</a>
+      </nav>
+    </aside>
+    <main class="admin-main">

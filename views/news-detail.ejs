@@ -1,0 +1,25 @@
+<%- include('partials/head', {pageTitle: lang==='uz' ? (item.title_uz||item.title_ru) : item.title_ru}) %>
+<body>
+<%- include('partials/header') %>
+<main>
+  <section class="section">
+    <div class="container container-narrow">
+      <a href="/<%= type==='olympiad' ? 'olympiads' : 'news' %>" class="back-link">← <%= lang==='uz' ? 'Orqaga' : 'Назад' %></a>
+      <article class="detail-article">
+        <time class="card-date"><%= new Date(item.created_at).toLocaleDateString(lang==='uz'?'uz-UZ':'ru-RU', {day:'numeric',month:'long',year:'numeric'}) %></time>
+        <% if (type==='olympiad' && item.event_date) { %>
+        <p class="event-date-detail">📅 <%= lang==='uz' ? 'Sana' : 'Дата проведения' %>: <strong><%= item.event_date %></strong></p>
+        <% } %>
+        <h1><%= lang==='uz' ? (item.title_uz||item.title_ru) : item.title_ru %></h1>
+        <% if (item.image) { %>
+        <div class="detail-img"><img src="<%= item.image %>" alt="<%= lang==='uz' ? item.title_uz : item.title_ru %>"></div>
+        <% } %>
+        <div class="detail-content">
+          <%- (lang==='uz' ? (item.content_uz||item.content_ru) : item.content_ru || '').replace(/\n/g,'<br>') %>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer') %>
+</body></html>

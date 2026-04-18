@@ -1,0 +1,21 @@
+<%- include('layout', {pageTitle: 'Настройки'}) %>
+<div class="admin-page">
+  <h1 class="admin-title">Настройки</h1>
+  <% if (success) { %><div class="alert alert-success"><%= success %></div><% } %>
+  <% if (error) { %><div class="alert alert-error"><%= error %></div><% } %>
+  <form method="POST" action="/admin/settings" class="admin-form" style="max-width:400px">
+    <h2>Изменить пароль</h2>
+    <div class="form-group">
+      <label>Текущий пароль</label>
+      <input type="password" name="old_password" required>
+    </div>
+    <div class="form-group">
+      <label>Новый пароль</label>
+      <input type="password" name="new_password" required minlength="6">
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-save">🔒 Изменить пароль</button>
+    </div>
+  </form>
+</div>
+<%- include('layout-end') %>

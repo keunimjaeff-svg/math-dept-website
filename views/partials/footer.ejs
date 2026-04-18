@@ -1,0 +1,26 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4><%= lang==='uz' ? 'Kafedra' : 'Кафедра' %></h4>
+        <p><%= lang==='uz' ? 'Oliy va Amaliy matematika kafedrasi' : 'Высшей и прикладной математики' %></p>
+        <p><%= lang==='uz' ? "Toshkent davlat iqtisodiyot universiteti" : 'Ташкентский государственный экономический университет' %></p>
+      </div>
+      <div>
+        <h4><%= lang==='uz' ? 'Havolalar' : 'Разделы' %></h4>
+        <a href="/about"><%= lang==='uz' ? 'Kafedra haqida' : 'О кафедре' %></a>
+        <a href="/news"><%= lang==='uz' ? 'Yangiliklar' : 'Новости' %></a>
+        <a href="/publications"><%= lang==='uz' ? 'Nashrlar' : 'Публикации' %></a>
+        <a href="/materials"><%= lang==='uz' ? "O'quv materiallari" : 'Учебные материалы' %></a>
+      </div>
+      <div>
+        <h4><%= lang==='uz' ? 'Aloqa' : 'Контакты' %></h4>
+        <p>📍 <%= lang==='uz' ? "Toshkent, Uzbekiston ko'chasi 49" : 'Ташкент, ул. Узбекистан 49' %></p>
+        <p>✉️ math@tsue.uz</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <%= new Date().getFullYear() %> <%= lang==='uz' ? 'TDIU — Oliy va Amaliy matematika kafedrasi' : 'ТГЭУ — Кафедра высшей и прикладной математики' %></p>
+    </div>
+  </div>
+</footer>
