@@ -46,20 +46,37 @@ app.use('/', publicRoutes);
 app.use('/admin', adminRoutes);
 
 // Sitemap
-app.get('/sitemap.xml', (req, res) => {
-  const base = `http://localhost:${PORT}`;
-  const urls = ['', '/about', '/news', '/publications', '/olympiads', '/materials', '/contact'];
+app.get('/sitemap.xml', async (req, res) => {
+  const db = require('./database');
+  const base = process.env.SITE_URL || 'https://math-dept-website.onrender.com';
+  const staticUrls = ['', '/about', '/news', '/publications', '/olympiads', '/materials', '/contact'];
+
+  const [newsList, olympiads, publications, materials] = await Promise.all([
+    db.allAsync('SELECT id, created_at FROM news WHERE published=1'),
+    db.allAsync('SELECT id, created_at FROM olympiads WHERE published=1'),
+    db.allAsync('SELECT id, created_at FROM publications'),
+    db.allAsync('SELECT id, created_at FROM materials'),
+  ]);
+
+  const toUrl = (path, date, freq = 'monthly') =>
+    `  <url><loc>${base}${path}</loc><lastmod>${new Date(date).toISOString().split('T')[0]}</lastmod><changefreq>${freq}</changefreq></url>`;
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(u => `  <url><loc>${base}${u}</loc><changefreq>weekly</changefreq></url>`).join('\n')}
+${staticUrls.map(u => `  <url><loc>${base}${u}</loc><changefreq>weekly</changefreq></url>`).join('\n')}
+${newsList.map(n => toUrl(`/news/${n.id}`, n.created_at, 'monthly')).join('\n')}
+${olympiads.map(o => toUrl(`/olympiads/${o.id}`, o.created_at, 'monthly')).join('\n')}
+${publications.map(p => toUrl(`/publications`, p.created_at, 'monthly')).join('\n')}
+${materials.map(m => toUrl(`/materials`, m.created_at, 'monthly')).join('\n')}
 </urlset>`;
   res.header('Content-Type', 'application/xml');
   res.send(xml);
 });
 
 app.get('/robots.txt', (req, res) => {
+  const base = process.env.SITE_URL || 'https://math-dept-website.onrender.com';
   res.type('text/plain');
-  res.send('User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: /sitemap.xml');
+  res.send(`User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: ${base}/sitemap.xml`);
 });
 
 app.listen(PORT, () => {
