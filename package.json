@@ -1,7 +1,7 @@
 {
   "name": "math-dept-website",
   "version": "1.0.0",
-  "description": "Oliy va Amaliy matematika kafedrasi - TDIU",
+  "description": "Oliy va amaliy matematika kafedrasi - TDIU",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
