@@ -1,0 +1,52 @@
+<%- include('layout', {pageTitle: item ? 'Редактировать источник' : 'Добавить источник'}) %>
+<div class="admin-page">
+  <div class="admin-page-header">
+    <h1 class="admin-title"><%= item ? 'Редактировать источник' : 'Добавить источник' %></h1>
+    <a href="/admin/links" class="btn-back">← Назад</a>
+  </div>
+  <form method="POST" action="<%= action %>" class="admin-form">
+    <div class="form-group">
+      <label>URL ссылки *</label>
+      <input type="url" name="url" value="<%= item ? item.url : '' %>" required placeholder="https://example.com">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Название (RU) *</label>
+        <input type="text" name="title_ru" value="<%= item ? item.title_ru : '' %>" required placeholder="Название сайта">
+      </div>
+      <div class="form-group">
+        <label>Nomi (UZ)</label>
+        <input type="text" name="title_uz" value="<%= item ? (item.title_uz||'') : '' %>" placeholder="Sayt nomi">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Категория (RU)</label>
+        <input type="text" name="category_ru" value="<%= item ? (item.category_ru||'') : '' %>" placeholder="Математика, Онлайн-курсы...">
+      </div>
+      <div class="form-group">
+        <label>Kategoriya (UZ)</label>
+        <input type="text" name="category_uz" value="<%= item ? (item.category_uz||'') : '' %>" placeholder="Matematika, Onlayn-kurslar...">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Описание (RU)</label>
+        <textarea name="description_ru" rows="2" placeholder="Краткое описание сайта"><%= item ? (item.description_ru||'') : '' %></textarea>
+      </div>
+      <div class="form-group">
+        <label>Tavsif (UZ)</label>
+        <textarea name="description_uz" rows="2" placeholder="Sayt haqida qisqacha"><%= item ? (item.description_uz||'') : '' %></textarea>
+      </div>
+    </div>
+    <div class="form-group" style="max-width:200px">
+      <label>Порядок отображения</label>
+      <input type="number" name="order_num" value="<%= item ? item.order_num : 0 %>" min="0">
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-save">💾 Сохранить</button>
+      <a href="/admin/links" class="btn-cancel">Отмена</a>
+    </div>
+  </form>
+</div>
+<%- include('layout-end') %>

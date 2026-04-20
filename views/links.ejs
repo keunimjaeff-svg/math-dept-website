@@ -1,0 +1,47 @@
+<%- include('partials/head', {pageTitle: lang==='uz' ? 'Foydali manbalar' : 'Полезные источники'}) %>
+<body>
+<%- include('partials/header') %>
+<main>
+  <div class="page-hero">
+    <div class="container">
+      <h1><%= lang==='uz' ? 'Foydali manbalar' : 'Полезные источники' %></h1>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <% if (list.length === 0) { %>
+        <p class="empty-msg"><%= lang==='uz' ? "Manbalar hali qo'shilmagan" : 'Источники ещё не добавлены' %></p>
+      <% } else {
+        // Group by category
+        const categories = {};
+        list.forEach(item => {
+          const cat = (lang==='uz' ? (item.category_uz||item.category_ru||'') : (item.category_ru||item.category_uz||'')) || (lang==='uz' ? 'Boshqalar' : 'Другое');
+          if (!categories[cat]) categories[cat] = [];
+          categories[cat].push(item);
+        });
+      %>
+      <% Object.entries(categories).forEach(([cat, items]) => { %>
+        <h2 class="section-title" style="margin-bottom:16px">🔗 <%= cat %></h2>
+        <div class="links-grid">
+          <% items.forEach(item => { %>
+          <a href="<%= item.url %>" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-icon">🌐</div>
+            <div class="link-info">
+              <h3 class="link-title"><%= lang==='uz' ? (item.title_uz||item.title_ru) : item.title_ru %></h3>
+              <% if (item.description_ru || item.description_uz) { %>
+              <p class="link-desc"><%= lang==='uz' ? (item.description_uz||item.description_ru) : item.description_ru %></p>
+              <% } %>
+              <span class="link-url"><%= item.url %></span>
+            </div>
+            <span class="link-arrow">→</span>
+          </a>
+          <% }) %>
+        </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer') %>
+</body>
+</html>

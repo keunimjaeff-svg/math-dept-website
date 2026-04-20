@@ -58,6 +58,12 @@ router.get('/materials', async (req, res) => {
   res.render('materials', { lang, books, other });
 });
 
+router.get('/links', async (req, res) => {
+  const lang = res.locals.lang;
+  const list = await db.allAsync('SELECT * FROM links ORDER BY order_num ASC, created_at DESC');
+  res.render('links', { lang, list });
+});
+
 router.get('/contact', (req, res) => {
   res.render('contact', { lang: res.locals.lang });
 });

@@ -177,6 +177,34 @@ router.post('/teachers/:id/delete', requireAdmin, async (req, res) => {
   res.redirect('/admin/teachers');
 });
 
+// ── LINKS ─────────────────────────────────────────────────────────────────────
+router.get('/links', requireAdmin, async (req, res) => {
+  const list = await db.allAsync('SELECT * FROM links ORDER BY order_num ASC, created_at DESC');
+  res.render('admin/links', { list });
+});
+router.get('/links/new', requireAdmin, (req, res) => res.render('admin/link-form', { item: null, action: '/admin/links' }));
+router.post('/links', requireAdmin, async (req, res) => {
+  const { title_ru, title_uz, description_ru, description_uz, url, category_ru, category_uz, order_num } = req.body;
+  await db.runAsync('INSERT INTO links (title_ru,title_uz,description_ru,description_uz,url,category_ru,category_uz,order_num) VALUES (?,?,?,?,?,?,?,?)',
+    [title_ru, title_uz, description_ru, description_uz, url, category_ru, category_uz, order_num || 0]);
+  res.redirect('/admin/links');
+});
+router.get('/links/:id/edit', requireAdmin, async (req, res) => {
+  const item = await db.getAsync('SELECT * FROM links WHERE id=?', [req.params.id]);
+  if (!item) return res.redirect('/admin/links');
+  res.render('admin/link-form', { item, action: `/admin/links/${item.id}` });
+});
+router.post('/links/:id', requireAdmin, async (req, res) => {
+  const { title_ru, title_uz, description_ru, description_uz, url, category_ru, category_uz, order_num } = req.body;
+  await db.runAsync('UPDATE links SET title_ru=?,title_uz=?,description_ru=?,description_uz=?,url=?,category_ru=?,category_uz=?,order_num=? WHERE id=?',
+    [title_ru, title_uz, description_ru, description_uz, url, category_ru, category_uz, order_num || 0, req.params.id]);
+  res.redirect('/admin/links');
+});
+router.post('/links/:id/delete', requireAdmin, async (req, res) => {
+  await db.runAsync('DELETE FROM links WHERE id=?', [req.params.id]);
+  res.redirect('/admin/links');
+});
+
 // ── SETTINGS ──────────────────────────────────────────────────────────────────
 router.get('/settings', requireAdmin, (req, res) => res.render('admin/settings', { success: null, error: null }));
 router.post('/settings', requireAdmin, async (req, res) => {

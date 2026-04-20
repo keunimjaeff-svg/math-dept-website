@@ -70,6 +70,15 @@ async function initDB() {
       file_path TEXT NOT NULL, type TEXT DEFAULT 'book',
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
+    CREATE TABLE IF NOT EXISTS links (
+      id SERIAL PRIMARY KEY,
+      title_ru TEXT NOT NULL, title_uz TEXT,
+      description_ru TEXT, description_uz TEXT,
+      url TEXT NOT NULL,
+      category_ru TEXT, category_uz TEXT,
+      order_num INTEGER DEFAULT 0,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
   `);
 
   const admin = await pool.query('SELECT id FROM admins WHERE username=$1', ['admin']);
