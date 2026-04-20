@@ -74,9 +74,8 @@ ${materials.map(m => toUrl(`/materials`, m.created_at, 'monthly')).join('\n')}
 });
 
 app.get('/robots.txt', (req, res) => {
-  const base = process.env.SITE_URL || 'https://math-dept-website.onrender.com';
   res.type('text/plain');
-  res.send(`User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: ${base}/sitemap.xml`);
+  res.send('User-agent: *\nDisallow: /admin/\nSitemap: https://math-dept-website.onrender.com/sitemap.xml');
 });
 
 app.listen(PORT, () => {
